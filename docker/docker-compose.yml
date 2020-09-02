@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  fluentd:
+    build: .
+    volumes:
+      - ~/fluentd/fluentd.conf:/etc/fluent/fluent.conf 
+      - /var/www/base_api_local/logs/access.log:/var/www/base_api_local/logs/access.log 
+      - /var/www/base_api_local/logs/api_error.log:/var/www/base_api_local/logs/api_error.log
+      - fluentd-buffer:/fluentd/log      
+      - /var/run/docker.sock:/var/run/docker.sock
+volumes:
+  fluentd-buffer:
